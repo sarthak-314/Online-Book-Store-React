@@ -1,0 +1,31 @@
+.upload-book-add-hover-boi{
+	transition: 0.2s;
+	width: 40%;
+	height: 350px;
+	margin-top: 40px;
+	margin-left: 5%;
+	margin-right: 5%;
+	border: 2px solid white;
+	display: inline-flex;
+	align-items:center;
+	justify-content: center;
+	float: left;
+}
+
+.float-right-boi {
+	float: right;
+}
+
+.upload-book-add-hover-boi:hover{ 
+	cursor: pointer;
+	color: black;
+	border: 2px solid #f95959;
+}
+
+.plus-upload-book-boi {
+font-size: 3rem;
+font-weight: 300;
+color: black;
+display: block;
+transition: 0.2s;
+}
