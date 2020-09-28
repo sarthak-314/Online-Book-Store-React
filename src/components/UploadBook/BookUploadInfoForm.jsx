@@ -1,55 +1,54 @@
 import React, { useState } from 'react'
 import Dropdowns from './Dropdowns'
+import {textArea} from 'antd'
 
 const BookUploadInfoForm = (props) => {
-    
-    const [titleValue, setTitleValue] = useState('')
-    const [descriptionValue, setDescriptionValue] = useState('')
-    const [priceValue, setPriceValue] = useState(0)
    
-    const onTitleChange = event => {
-        setTitleValue(event.currentTarget.value)
-      }
-      const onDescriptionChange = event => {
-        setDescriptionValue(event.currentTarget.value)
-      }
-      const onPriceChange = (event) => {
-          setPriceValue(event.currentTarget.value)
-      }
-      
+   const { setTitle, setPrice } = props
+
+    const [titleFocus, setTitleFocus] = useState(0) //0 for nothin' 1 for yea -1 for neaaa
+    const [priceFocus, setPriceFocus] = useState(0)   
+    
     
     return (
         <div class="col-sm-6 form">
 
             <div class='signup form-peice'>
+              
                <form class="signup-form" action="#" method="post">
+              
                <br/>
                <br/>
-                  <div class="form-group">
-                     {titleValue === '' ? <label for="name">Title</label> : null}
-                     <input type="text"  id="name" class="name" onChange={onTitleChange}/>
-                     <span class="error"></span>
-                  </div>
+              
+               <div class={`${titleFocus === -1 ? 'hasError form-group' : 'form-group'}`}>
+               <label for="name" class={`${titleFocus === 1 ? 'active' : ''}`}>Book Title</label>
+               <input type="text" name="username" id="name" class="name"
+               onChange={e => setTitle(e.target.value)} onFocus={() => setTitleFocus(1)}/>
+               <span class="error"> works? </span>
+               </div>
             <br/>
             <br/>
             
-            <Dropdowns/>
+            <Dropdowns
+            setBookCategory={props.setBookCategory}
+            setBookCondition={props.setBookCondition}
+            />
 			
               <br/>
-              <br/>
-              <br/>
-                  <div class="form-group">
-                     {priceValue === 0 ? <label for="name"> Price (Rs.) </label> : null}
-                     <input type="number" class="name"/>
-                     <span class="error"></span>
-                  </div>
-                  <div class="form-group">
-                     {descriptionValue === '' ? <label for="phone">Description - <small>Optional</small></label> : null}
-                     <textArea type="text" name="phone" id="phone" class='textarea-boi'/>
-                  </div>
+
+            <div class={`${priceFocus === -1 ? 'hasError form-group' : 'form-group'}`}>
+               <label for="name" class={`${priceFocus === 1 ? 'active' : ''}`}>Price (Rs.)</label>
+               <input type="number" name="username" id="name" class="name"
+               onChange={e => setPrice(e.target.value)} onFocus={() => setPriceFocus(1)}/>
+               <span class="error"> works? </span>
+            </div>
+
+            <br/>
 				<br/>
                   <div class="CTA">
-                     <input type="submit" value="Signup Now" id="submit"/>
+                     <input type="submit" value="Upload Book" id="submit"
+                     onClick={e => props.uploadBook(e)}
+                     />
                   </div>
              <br/>
              <br/>

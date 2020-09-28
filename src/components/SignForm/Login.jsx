@@ -2,16 +2,16 @@ import React, { useState } from 'react'
 
 const Login = ({ toggleSignup }) => {
 
-    const [loginEmail, setLoginEmail] = useState('')
+    const [name, setName] = useState('')
     const [loginPass, setLoginPass] = useState('')
  
     return (
         <div class="login form-peice">
         <form class="login-form" action="#" method="post">
            <div class="form-group">
-              <label for="loginemail" class={`${loginEmail !== '' ? 'active' : ''}`}>Email Address</label>
+              <label for="loginemail" class={`${name !== '' ? 'active' : ''}`}>Full Name</label>
               <input type="email" name="loginemail" id="loginemail" required
-                    onChange={(e) => setLoginEmail(e.target.value)}/>
+                    onChange={(e) => setName(e.target.value)}/>
            </div>
 
            <div class="form-group">
@@ -22,7 +22,7 @@ const Login = ({ toggleSignup }) => {
 
            <div class="CTA">
               <input type="submit" value="Login"/>
-              <a href="#" class="switch" onClick={() => toggleSignup(true)}>I'm New to OnlineBooks</a>
+              <a href="#" class="switch" onClick={() => toggleSignup(true)}>I'm New to OnlineBookStore</a>
            </div>
         </form>
      </div>

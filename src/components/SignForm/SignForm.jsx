@@ -1,12 +1,12 @@
 import React, { useState, useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import './SignForm.scss'
-
+import { useHistory } from 'react-router-dom'
 import Signup from './Signup'
 import Login from './Login'
 
 const SignForm = props => {
-   
+   const history = useHistory()
    const textInput = useRef(null)
 
    const [showSignup, setShowSignup] = useState(true)
@@ -24,7 +24,8 @@ const SignForm = props => {
       <div class="row">
 
          <div class="col-sm-6 brand">
-            <a href="#" class="logo"> OBS <span>.</span></a>
+            <a href="#" class="logo"
+            onClick={() => history.push('/')}> OBS <span>.</span></a>
 
             <div class="heading">
                <h2>OnlineBooks</h2>

@@ -102,10 +102,15 @@ background-attachment: fixed;
 .header-title {
  font-size: 16px;
  font-weight: 400;
- margin-right: 120px;
+ padding-bottom: 10px; 
+ padding-top: 10px;
  span {
   font-weight: 500;
   color: var(--body-color);
+ }
+ &:hover{
+   cursor: pointer; 
+   opacity: 0.95; 
  }
 }
 
@@ -131,6 +136,9 @@ background-attachment: fixed;
   right: 12px;
   top: -3px;
   border: 2px solid #fff;
+ }
+ &:hover{
+   opacity: 0.95;
  }
 }
 

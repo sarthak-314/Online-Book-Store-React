@@ -55,7 +55,7 @@ const Main = props => {
 	<div class="main-wrapper">
   <div class="books-of">
    <div class="week">
-    <div class="author-title">Chat with Sellers</div>
+    <div class="author-title">Chat with Friends</div>
    
     {chatSellerList.map(seller => 
       <ChatMain
@@ -84,8 +84,8 @@ const Main = props => {
     <div class="genre">Popular by Genre</div>
     <div class="book-types">
      <a href="#" class="book-type active" onClick={()=>onCatChange(0)}> All Genres</a>
-     <a href="#" class="book-type" onClick={()=>onCatChange(1)}> Science </a>
-     <a href="#" class="book-type" onClick={()=>onCatChange(2)}> Fiction </a>
+     <a href="#" class="book-type" onClick={()=>onCatChange(1)}> Fiction </a>
+     <a href="#" class="book-type" onClick={()=>onCatChange(2)}> Science </a>
      <a href="#" class="book-type" onClick={()=>onCatChange(3)}> AI & Code</a>
      <a href="#" class="book-type" onClick={()=>onCatChange(4)}> Philosophy</a>
      <a href="#" class="book-type" onClick={()=>onCatChange(5)}> Biography</a>

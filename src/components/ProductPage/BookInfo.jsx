@@ -1,7 +1,9 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
 
 const BookInfo = (props) => {
     const { category, condition, popular } = props
+    const history = useHistory()
     return (
         <div class="col-md-6 mb-4">
 
@@ -31,7 +33,8 @@ const BookInfo = (props) => {
             <p>Book Description</p>
 
             <form class="d-flex justify-content-left">
-              <button class="btn btn-primary btn-md my-0 p" type="submit">Add to cart
+              <button class="btn btn-primary btn-md my-0 p" type="submit"
+              onClick = {() => history.push('/checkout')}> Buy Book
                 <i class="fas fa-shopping-cart ml-1"></i>
               </button>
 

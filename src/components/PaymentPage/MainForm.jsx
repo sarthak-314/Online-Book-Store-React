@@ -7,23 +7,18 @@ import MainInfo from './Form/MainInfo'
 const MainForm = (props) => {
 
     
+    
     return (
 <div class="col-md-8 mb-4">
     <div class="card">
 
     <form class="card-body">
         <MainInfo/>
-
         <LocationForm/>
-
         <hr/>
-
         <AddressInfo/>
-
         <hr/>
-
         <CardPayment/>
-
         <hr class="mb-4"/>
 
     <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>

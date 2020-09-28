@@ -1,22 +1,26 @@
 import React from 'react'
 
 const CardPayment = (props) => {
-    return (
+  // TODO: Radio option on react
+  return (
         <div>
         <div class="d-block my-3">
         <div class="custom-control custom-radio">
           <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required/>
-          <label class="custom-control-label" for="credit">Credit card</label>
+          <label class="custom-control-label" for="credit">Stripe</label>
         </div>
         <div class="custom-control custom-radio">
           <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required/>
-          <label class="custom-control-label" for="debit">Debit card</label>
+          <label class="custom-control-label" for="debit">Credit Card</label>
         </div>
         <div class="custom-control custom-radio">
           <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required/>
           <label class="custom-control-label" for="paypal">Paypal</label>
         </div>
       </div>
+      
+      
+      
       <div class="row">
         <div class="col-md-6 mb-3">
           <label for="cc-name">Name on card</label>
@@ -50,6 +54,9 @@ const CardPayment = (props) => {
           </div>
         </div>
       </div>
+      
+      
+      
       </div>
     )
 }
