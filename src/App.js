@@ -9,6 +9,8 @@ import UploadBook from './components/UploadBook/UploadBook'
 import ProductPage from './components/ProductPage/ProductPage'
 import PaymentPage from './components/PaymentPage/PaymentPage'
 import ChatPage from './components/ChatPage/Chat'
+import ArticleList from './components/ReviewPage/ArticleList/ArticleList'
+import BlogPost from './components/ReviewPage/BlogPost/BlogPost'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 
@@ -26,6 +28,8 @@ const App = () => {
      <Route path='/bookad/:slug' component={ProductPage}/>
      <Route path='/checkout/' component={PaymentPage}/>
      <Route path='/chat/' component={ChatPage}/>
+     <Route path='/blogs/' component={ArticleList}/>
+     <Route path='/blog/' component={BlogPost}/>
     </Switch>
     </div>
     </Suspense>
