@@ -11,10 +11,31 @@ const SignUp = ({ toggleSignup }) => {
     
     const onSignupHandler = (event) => {
       event.preventDefault()
-      const success = dispatch(actions.authSignup(name, email, password, confPassword, avatar, phone))
-      if(success){
-         return <Redirect to="/"/>
+      // const success = dispatch(actions.authSignup(name, email, password, confPassword, avatar, phone))
+      // if(success){
+      //    return <Redirect to="/"/>
+      // }
+      
+      const token = localStorage.getItem('token')
+      // dispatch(authSuccess(token))
+      console.log(token)
+      // make the user profile
+      const url = 'http://127.0.0.1:8000/api/user/create-profile/'
+      const data = {
+            'profile_pic': avatar, 
+            'phone_num': phone
       }
+      
+      const authHeader = {'Authorization' : `Token ${token}`} 
+      axios.post(url, data, {
+          headers: authHeader
+      }).then(res => {
+          if(res.status == 200){
+              console.log(res)
+              return true
+          }
+      }).catch(err => console.log(err))
+
     }
 
     const profilePicUploadHandler = event => {

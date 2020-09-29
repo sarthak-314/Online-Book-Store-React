@@ -68,12 +68,14 @@ export const authSignup = (username, email, password1, password2, avatar, phoneN
             const token = res.data.key
             localStorage.setItem('token', token)
             dispatch(authSuccess(token))
+            console.log(token)
             // make the user profile
-            const url = 'http://127.0.0.1:8000/api/create-profile/'
+            const url = 'http://127.0.0.1:8000/api/user/create-profile/'
             const data = {
                 'profile_pic': avatar, 
                 'phone_num': phoneNum
             }
+            
             const authHeader = {'Authorization' : `Token ${token}`} 
             axios.post(url, data, {
                 headers: authHeader

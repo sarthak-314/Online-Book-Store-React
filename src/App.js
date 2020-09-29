@@ -9,8 +9,7 @@ import UploadBook from './components/UploadBook/UploadBook'
 import ProductPage from './components/ProductPage/ProductPage'
 import PaymentPage from './components/PaymentPage/PaymentPage'
 import ChatPage from './components/ChatPage/Chat'
-import ArticleList from './components/ReviewPage/ArticleList/ArticleList'
-import BlogPost from './components/ReviewPage/BlogPost/BlogPost'
+import BlogPage from './components/BlogPage/BlogPage'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 
@@ -28,8 +27,7 @@ const App = () => {
      <Route path='/bookad/:slug' component={ProductPage}/>
      <Route path='/checkout/' component={PaymentPage}/>
      <Route path='/chat/' component={ChatPage}/>
-     <Route path='/blogs/' component={ArticleList}/>
-     <Route path='/blog/' component={BlogPost}/>
+     <Route path='/blog/' component={BlogPage}/>
     </Switch>
     </div>
     </Suspense>
@@ -37,6 +35,5 @@ const App = () => {
 }
 export default App;	
 
-// 5:15-6:30 AM, 7
-// 8:00 AM - 8:45 - 7 (Django)
-// 9:30 AM - 12:00 AM - 7
+// 7:15 AM - 8:15 AM 6.5
+// 8:30 AM - 

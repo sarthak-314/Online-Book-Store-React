@@ -1,7 +1,0 @@
-.list-item {
-    transition: 0.05s;
-}
-.list-item:hover {
-    background-color: white;
-    cursor: pointer;
-}
