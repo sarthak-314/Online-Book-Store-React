@@ -10,6 +10,7 @@ import ProductPage from './components/ProductPage/ProductPage'
 import PaymentPage from './components/PaymentPage/PaymentPage'
 import ChatPage from './components/ChatPage/Chat'
 import BlogPage from './components/BlogPage/BlogPage'
+import FileUpload from './components/SignForm/aa'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 
@@ -28,6 +29,7 @@ const App = () => {
      <Route path='/checkout/' component={PaymentPage}/>
      <Route path='/chat/' component={ChatPage}/>
      <Route path='/blog/' component={BlogPage}/>
+     <Route path='/boi' component={FileUpload}/>
     </Switch>
     </div>
     </Suspense>

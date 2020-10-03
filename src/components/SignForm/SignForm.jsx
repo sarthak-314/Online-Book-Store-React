@@ -16,6 +16,7 @@ const SignForm = props => {
       setShowSignup(showLogin)
    }
 
+
 	return (
 
 <div class="container">
@@ -40,7 +41,8 @@ const SignForm = props => {
 
             {showSignup 
             ?
-             <Signup toggleSignup={toggleSignup}/>
+             <Signup toggleSignup={toggleSignup}
+                     history={history}/>
             :
             <Login toggleSignup={toggleSignup}/>
             }

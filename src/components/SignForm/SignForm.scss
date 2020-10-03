@@ -251,6 +251,18 @@ section#formHolder {
   }
 }
 
+.upload-ppic {
+  font-size: 15px;
+  display: inline-block;
+  padding: auto;
+  border-radius: 0px;
+  &:hover{
+    cursor: pointer;
+    background-color: #e84848;
+  }
+
+}
+
 .btn-boi-2{
   padding: 10px;
   margin: 0 5%; 

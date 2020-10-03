@@ -1,5 +1,7 @@
 import axios from 'axios'
 import * as actionTypes from './actionTypes'
+import React from 'react'
+import { DJANGO_API_URL } from '../../components/constants'
 
 export const authStart = () => {
     return {
@@ -49,45 +51,51 @@ export const authLogin = (username, password) => {
 }
 
 export const updateProfilePic = pic => {
+    if(pic !== ''){
     return {
         type: actionTypes.UPDATE_PIC, 
         pic: pic
     }
 }
+}
 
 export const authSignup = (username, email, password1, password2, avatar, phoneNum) => {
     return dispatch => {
         dispatch(authStart())
-        axios.post('http://127.0.0.1:8000/rest-auth/registration/', {
+        username = username.replace(/ /g, "")
+        return axios.post('http://127.0.0.1:8000/rest-auth/registration/', {
             username: username,
             email: email,
             password1: password1,
             password2: password2
         })
-        .then(res => {
-            const token = res.data.key
-            localStorage.setItem('token', token)
-            dispatch(authSuccess(token))
-            console.log(token)
-            // make the user profile
-            const url = 'http://127.0.0.1:8000/api/user/create-profile/'
-            const data = {
-                'profile_pic': avatar, 
-                'phone_num': phoneNum
-            }
+        // .then(res => {
+        //     const token = res.data.key
+        //     localStorage.setItem('token', token)
+        //     dispatch(authSuccess(token))
+        //     console.log(token)
+        //     axios({
+        //         method: 'post',
+        //         url: DJANGO_API_URL + '/user/create-profile/',
+        //         data: avatar,
+        //         headers: {
+        //             'Authorization' : `Token ${token}`, 
+        //             'Content-Type':'multipart/form-data'
+        //         }
+        //      })
+        //      .then(res => console.log(res))
+        //      .catch(err => console.log(err))
             
-            const authHeader = {'Authorization' : `Token ${token}`} 
-            axios.post(url, data, {
-                headers: authHeader
-            }).then(res => {
-                if(res.status == 200){
-                    console.log(res)
-                    return true
-                }
-            }).catch(err => console.log(err))
-        })
-        .catch(err => {
-            dispatch(authFail(err))
-        })  
+        //     // const url = 'http://127.0.0.1:8000/api/user/create-profile/'
+        //     // const data = {
+        //     //     'profile_pic': avatar            
+        //     // }
+        //     // const authHeader = {'Authorization' : `Token ${token}`, 'content-type': 'application/x-www-form-urlencoded'}
+             
+            
+        // })
+        // .catch(err => {
+        //     dispatch(authFail(err))
+        // })  
     }
 }

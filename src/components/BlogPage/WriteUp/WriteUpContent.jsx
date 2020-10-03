@@ -1,105 +1,57 @@
-import React from 'react'
-import {
-  Form,
-  Select,
-  Input, 
-  InputNumber,
-  Switch,
-  Radio,
-  Slider,
-  Button,
-  Upload,
-  Rate,
-  Checkbox,
-  Row,
-  Col,
-} from 'antd';
-
-import { UploadOutlined, InboxOutlined } from '@ant-design/icons';
-const { Option } = Select;
-const formItemLayout = {
-  labelCol: {
-    span: 6,
-  },
-  wrapperCol: {
-    span: 14,
-  },
-};
-
-const normFile = (e) => {
-  console.log('Upload event:', e);
-
-  if (Array.isArray(e)) {
-    return e;
-  }
-
-  return e && e.fileList;
-};
+import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
+import BlogForm from './BlogForm'
+import axios from 'axios'
+import { Spin, Alert } from 'antd'
+import { DJANGO_API_URL, DJANGO_BASE_URL } from '../../constants'
 
 const Demo = () => {
-  const onFinish = (values) => {
-    console.log('Received values of form: ', values);
-  };
+
+  const [bookTitle, setBookTitle] = useState('')
+  const [category, setCategory] = useState(-1)
+  const [rating, setRating] = useState(-1)
+  const [title, setTitle] = useState('')
+  const [content, setContent] = useState('')
+  const [loading, setLoading] = useState(false)
+
+  const history = useHistory()
+  const token = useSelector(state => state.token)
+
+  const onSubmitHandler = event => {
+    const BLOG_WRITE_URL = DJANGO_API_URL + '/blog/create-blog/'
+    if(token == null){
+      history.push('/signup')
+    }
+    const data = {
+      'title': title, 
+      'content': content, 
+      'rating': rating,
+      'book_title': bookTitle
+    }
+    setLoading(true)
+    axios.post(BLOG_WRITE_URL, data).then(res => {
+      alert('Blog Successfully Uploaded!')
+      setLoading(false)
+      history.push('/')
+    })
+  }
 
   return (
-    <Form
-      name="validate_other"
-      {...formItemLayout}
-      onFinish={onFinish}
-      initialValues={{
-        ['input-number']: 3,
-        ['checkbox-group']: ['A', 'B'],
-        rate: 3.5,
-      }}
-    >
-
-    <Form.Item name={['user', 'name']} label="Book Name" rules={[{ required: true }]}>
-        <Input />
-      </Form.Item>
-
-      <Form.Item
-        name="radio-button"
-        label="Book Category"
-        rules={[
-          {
-            required: true,
-            message: 'Please pick an item!',
-          },
-        ]}
-      >
-        <Radio.Group>
-          <Radio.Button value="a">Ficiton</Radio.Button>
-          <Radio.Button value="b">Science</Radio.Button>
-          <Radio.Button value="c">AI & Code</Radio.Button>
-          <Radio.Button value="d">Philosophy</Radio.Button>
-          <Radio.Button value="e">Biography</Radio.Button>
-        </Radio.Group>
-      </Form.Item>
-
-      <Form.Item name="rate" label="Your Rating for Book">
-        <Rate />
-      </Form.Item>
-
-      <Form.Item name={['user', 'email']} label="Review Title" rules={[{ type: 'email' }]}>
-        <Input />
-      </Form.Item>
-
-      <Form.Item name={['user', 'introduction']} label="Review Content">
-        <Input.TextArea rows={20}/>
-      </Form.Item>
-      
-      
-      <Form.Item
-        wrapperCol={{
-          span: 12,
-          offset: 6,
-        }}
-      >
-        <Button type="primary" htmlType="submit">
-          Upload Review
-        </Button>
-      </Form.Item>
-    </Form>
+  loading ? <Spin tip="Loading...">
+  <Alert
+    message="Uploading Book Review to Server"
+    type="success"
+  />
+</Spin> : 
+  <BlogForm
+   setBookTitle={setBookTitle}
+   setCategory={setCategory}
+   setRating={setRating}
+   setTitle={setTitle}
+   setContent={setContent}
+   onSubmitHandler={onSubmitHandler}
+  />
   );
 };
 

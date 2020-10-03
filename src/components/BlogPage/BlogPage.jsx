@@ -10,7 +10,10 @@ const { Header, Content, Footer, Sider } = Layout;
 
 const BlogPage = props => {
     const [navItem, setNavItem] = useState(0)
-    const CONTENT_COMPONENTS = [<ArticleListContent/>, <BlogPostContent/>, <WriteUpContent/>]
+    const [blogArticle, setBlogArticle] = useState('Harry Potter')
+    
+    const CONTENT_COMPONENTS = [<ArticleListContent setNavItem={setNavItem} setBlogArticle={setBlogArticle}/>,
+                                 <BlogPostContent title={blogArticle}/>, <WriteUpContent/>]
 
 return (
   <Layout>

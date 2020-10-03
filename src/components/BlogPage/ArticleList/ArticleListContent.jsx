@@ -1,35 +1,22 @@
 import React, { useState, useEffect } from 'react'
 import ListItem from './ListItem'
-import { List, Avatar, Space } from 'antd';
-import { Layout} from 'antd';
-const { Header, Content, Footer, Sider } = Layout;
+import { Layout, Button} from 'antd'
+import axios from 'axios'
+import { getBlogs } from '../utils/articleListSerializer'
+import { DJANGO_API_URL } from '../../constants'
+const { Header, Content} = Layout
 
 const BlogPage = props => {
 
   const [listData, setListData] = useState([])
 
   useEffect(() => {
-  
     getListData()
-  
   }, [])
-  const getListData = () => {
 
-    for (let i = 0; i < 23; i++) {
-      listData.push({
-        href: 'https://ant.design',
-        title: 'Harry Potter and the Sorcers Stone' ,
-        avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-        description:
-          'Book review by Felix Kjellburg',
-        likes : 25, 
-        stars : 40, 
-        comments: 3, 
-        content:
-          'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
-      });
-    }
-    
+  const getListData = () => {
+    getBlogs().then(res => setListData(res))
+    setListData(listData)
   }
 
 return (
@@ -40,8 +27,13 @@ return (
   <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
 
   <ListItem 
+  setNavItem={props.setNavItem}
+  setBlogArticle={props.setBlogArticle}
   listData={listData}
   />  
+  <Button type="primary" onClick={() => props.setNavItem(2)}>
+    Write A Book Review
+    </Button>
 
   </div>
   </Content>

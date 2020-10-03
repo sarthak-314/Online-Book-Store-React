@@ -1,48 +1,55 @@
-import React from 'react'
-import { Typography, Divider } from 'antd';
+import React, { useState, useEffect } from 'react'
+import { Typography } from 'antd';
+import { DJANGO_API_URL, DJANGO_BASE_URL } from '../../constants'
+import axios from 'axios'
+import ListItem from './IntroPiece'
+import CommentWrite from './Comments/CommentWrite'
+import CommentView from './Comments/CommentView'
+
+const BLOG_POST_BY_TITLE_URL = DJANGO_API_URL + '/blog/get-blog-by-title/'
 
 const { Title, Paragraph, Text } = Typography;
 const BlogPost = props => {
+  const { blogArticle } = props
+  const [content, setContent] = useState('Book Review Content')
+  const [critic, setCritic] = useState('Rick Sanchez')
+  const [bookImg, setBookImg] = useState(null)
+  const [criticImg, setCriticImg] = useState(null)
+  
 
-return (
+  const getBlogPostByTitle = () => {
+      
+  }
+
+  useEffect(() => {
+    console.log(props.title)
+    axios.post(BLOG_POST_BY_TITLE_URL, {'title': props.title}).then(res => {
+      const blog = res.data.blog
+      setContent(blog.content)
+      setCritic(blog.user_profile.user.username)
+      setBookImg(DJANGO_BASE_URL + blog.book.image)
+      setCriticImg(DJANGO_BASE_URL + blog.user_profile.profile_pic)
+  })
+    .catch(err => console.log(err))
+  }, [])
+  
+  const listData = [{
+    title: `Book review by ${critic}`,
+    avatar: {criticImg},
+  }]
+
+return (<>
   <Typography>
-    <Title>Introduction</Title>
+    <Title>{props.title}</Title>
+    <ListItem listData={listData} bookImg={bookImg} avatar={criticImg}/>
     <Paragraph>
-      In the process of internal desktop applications development, many different design specs and
-      implementations would be involved, which might cause designers and developers difficulties and
-      duplication and reduce the efficiency of development.
+      {content}
     </Paragraph>
-    <Paragraph>
-      After massive project practice and summaries, Ant Design, a design language for background
-      applications, is refined by Ant UED Team, which aims to
-      <Text strong>
-        uniform the user interface specs for internal background projects, lower the unnecessary
-        cost of design differences and implementation and liberate the resources of design and
-        front-end development
-      </Text>.
-    </Paragraph>
-    <Title level={2}>Guidelines and Resources</Title>
-    <Paragraph>
-      We supply a series of design principles, practical patterns and high quality design resources
-      (<Text code>Sketch</Text> and <Text code>Axure</Text>), to help people create their product
-      prototypes beautifully and efficiently.
-    </Paragraph>
-
-    <Paragraph>
-      <ul>
-        <li>
-          <a href="/docs/spec/proximity">Principles</a>
-        </li>
-        <li>
-          <a href="/docs/pattern/navigation">Patterns</a>
-        </li>
-        <li>
-          <a href="/docs/resource/download">Resource Download</a>
-        </li>
-      </ul>
-    </Paragraph>
-
 </Typography>
+<CommentWrite/>
+<CommentView/>
+<CommentView/>
+</>
 )
 }
 
