@@ -23,6 +23,7 @@ const NavBar = props => {
         console.log(collapsed, type);
       }}
     >
+      <div style={{marginBottom: '60px'}}></div>
         <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']}>
         <Menu.Item key="1" icon={<FileSearchOutlined />} onClick={() => setNavItem(0)}>
           Browse

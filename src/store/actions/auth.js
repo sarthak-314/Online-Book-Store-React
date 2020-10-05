@@ -32,21 +32,24 @@ export const logout = () => {
 }
 
 
-export const authLogin = (username, password) => {
+export const authLogin = (username, email, password) => {
     return dispatch => {
         dispatch(authStart())
         axios.post('http://127.0.0.1:8000/rest-auth/login/', {
-            username: username,
-            password: password
+            'username': username,
+            'email': email, 
+            'password': password, 
         })
         .then(res => {
             const token = res.data.key
             localStorage.setItem('token', token)
             dispatch(authSuccess(token))
+            console.log(res)
         })
         .catch(err => {
-            dispatch(authFail(err))
-        })
+            const message = `Something went wrong with Login... Status Code : ${err.response.status}`
+            dispatch(authFail(message))
+    })
     }
 }
 
@@ -69,33 +72,29 @@ export const authSignup = (username, email, password1, password2, avatar, phoneN
             password1: password1,
             password2: password2
         })
-        // .then(res => {
-        //     const token = res.data.key
-        //     localStorage.setItem('token', token)
-        //     dispatch(authSuccess(token))
-        //     console.log(token)
-        //     axios({
-        //         method: 'post',
-        //         url: DJANGO_API_URL + '/user/create-profile/',
-        //         data: avatar,
-        //         headers: {
-        //             'Authorization' : `Token ${token}`, 
-        //             'Content-Type':'multipart/form-data'
-        //         }
-        //      })
-        //      .then(res => console.log(res))
-        //      .catch(err => console.log(err))
-            
-        //     // const url = 'http://127.0.0.1:8000/api/user/create-profile/'
-        //     // const data = {
-        //     //     'profile_pic': avatar            
-        //     // }
-        //     // const authHeader = {'Authorization' : `Token ${token}`, 'content-type': 'application/x-www-form-urlencoded'}
-             
-            
-        // })
-        // .catch(err => {
-        //     dispatch(authFail(err))
-        // })  
+        .then(res => {
+            const token = res.data.key
+            localStorage.setItem('token', token)
+            dispatch(authSuccess(token))
+            console.log(token)
+        })
+        .catch(err => {
+            const message = `Something went wrong with Signup... Status Code : ${err.response.status}`
+            dispatch(authFail(message))
+        })  
     }
 }
+
+
+
+
+
+// Set up fetching books and friends and shit like that 
+
+
+
+
+
+
+
+

@@ -1,5 +1,5 @@
 import React from 'react'
-import { MessageOutlined, LikeOutlined, StarOutlined } from '@ant-design/icons';
+import { LikeFilled, StarFilled, MessageFilled } from '@ant-design/icons';
 import { List, Avatar, Space } from 'antd';
 import './ArticleList.scss'
 
@@ -38,9 +38,9 @@ const IconText = ({ icon, text }) => (
           className='list-item'
           key={item.title}
           actions={[
-            <IconText icon={StarOutlined} text={item.stars} key="list-vertical-star-o" />,
-            <IconText icon={LikeOutlined} text={item.likes} key="list-vertical-like-o" />,
-            <IconText icon={MessageOutlined} text={item.comments} key="list-vertical-message" />,
+            <IconText icon={StarFilled} text={item.stars} key="list-vertical-star-o" />,
+            <IconText icon={LikeFilled} text={item.likes} key="list-vertical-like-o" />,
+            <IconText icon={MessageFilled} text={item.comments} key="list-vertical-message" />,
           ]}
           extra={
             <img

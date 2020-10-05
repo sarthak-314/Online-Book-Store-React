@@ -904,6 +904,15 @@ h1 {
   }
 }
 
+.add-hover{ 
+  &:hover{
+    cursor: pointer; 
+    opacity: 0.95;
+  }
+}
+
+
+
 .med-git {
   transition: 0.1s;
   margin-left : 10px;

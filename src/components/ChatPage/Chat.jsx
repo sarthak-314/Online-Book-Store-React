@@ -82,7 +82,6 @@ const Chat = props => {
       </div>
       <SendMessageArea/> 
     </div>
-    <SellerList style={{float: 'right'}}/> 
   </div> 
 </div>
 	)

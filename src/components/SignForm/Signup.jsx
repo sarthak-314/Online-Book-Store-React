@@ -6,19 +6,13 @@ import { Spin, Alert } from 'antd'
 
 const SignUp = props => {
    const { toggleSignup, history } = props
-    const dispatch = useDispatch()
-    
+   const dispatch = useDispatch()
+
     const onSignupHandler = (event) => {
       event.preventDefault()
       console.log(avatar)
       setLoading(true)
-      dispatch(actions.authSignup(name, email, password, confPassword, avatar, phone)).then(res => {
-         console.log(res)
-      })
-      .catch(err => {
-         console.log(err)
-         setAlert('Something Went Wrong....')
-      })
+      dispatch(actions.authSignup(name, email, password, confPassword, avatar, phone))
       history.push('/')
 
     }

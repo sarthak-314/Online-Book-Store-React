@@ -3,9 +3,9 @@ import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import BlogForm from './BlogForm'
 import axios from 'axios'
-import { Spin, Alert } from 'antd'
+import { Spin, Alert, Typography } from 'antd'
 import { DJANGO_API_URL, DJANGO_BASE_URL } from '../../constants'
-
+const { Title } = Typography
 const Demo = () => {
 
   const [bookTitle, setBookTitle] = useState('')
@@ -44,6 +44,11 @@ const Demo = () => {
     type="success"
   />
 </Spin> : 
+<>
+<Typography>
+ <Title>Write A Book Review</Title>
+</Typography>
+
   <BlogForm
    setBookTitle={setBookTitle}
    setCategory={setCategory}
@@ -52,6 +57,7 @@ const Demo = () => {
    setContent={setContent}
    onSubmitHandler={onSubmitHandler}
   />
+  </>
   );
 };
 

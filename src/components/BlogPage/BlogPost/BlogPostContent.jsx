@@ -5,6 +5,7 @@ import axios from 'axios'
 import ListItem from './IntroPiece'
 import CommentWrite from './Comments/CommentWrite'
 import CommentView from './Comments/CommentView'
+import { MessageFilled, MessageOutlined, LikeFilled, LikeOutlined, StarFilled, StarOutlined } from '@ant-design/icons'
 
 const BLOG_POST_BY_TITLE_URL = DJANGO_API_URL + '/blog/get-blog-by-title/'
 
@@ -36,17 +37,22 @@ const BlogPost = props => {
   const listData = [{
     title: `Book review by ${critic}`,
     avatar: {criticImg},
+    likes: 25, 
+    stars: 10, 
+    comments: 5
   }]
 
 return (<>
-  <Typography>
+<Typography>
     <Title>{props.title}</Title>
-    <ListItem listData={listData} bookImg={bookImg} avatar={criticImg}/>
+    <ListItem listData={listData} bookImg={bookImg} avatar={criticImg} />
     <Paragraph>
       {content}
     </Paragraph>
 </Typography>
-<CommentWrite/>
+<CommentWrite
+title={props.title}
+/>
 <CommentView/>
 <CommentView/>
 </>

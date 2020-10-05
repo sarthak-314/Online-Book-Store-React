@@ -11,21 +11,19 @@ $gray: #92959E;
 }
 
 .chat-body {
-  background: #C5DDEB;
   font: 14px/20px "Lato", Arial, sans-serif;
-  padding: 40px 0;
   color: white;
 }
 
 .container-boi {
   margin: 0 auto;
-  width: 1010px;
+  width: 100%; 
   background: #444753;
   border-radius: 5px;
 }
 
 .people-list {
-  width:260px;
+  width: 30%;
   float: left;
   
   .search {
@@ -49,7 +47,7 @@ $gray: #92959E;
   
   ul {
     padding: 20px;
-    height: 770px;
+    height: 670px;
  
     
     
@@ -79,7 +77,7 @@ $gray: #92959E;
 }
 
 .chat {
-  width: 490px;
+  width: 60%;
   float:left;
   background: #F2F5F8;
   border-top-right-radius: 5px;
@@ -123,7 +121,7 @@ $gray: #92959E;
   	 padding-right: 20px;
     border-bottom: 2px solid white;
     overflow-y: scroll;
-    height: 575px;
+    height: 475px;
     
     .message-data {
       margin-bottom: 15px;

@@ -14,10 +14,6 @@ const SellerList = props => {
 
 	return (
     <div class="people-list" id="people-list">
-      <div class="search">
-        <input type="text" placeholder="search" />
-        <i class="fa fa-search"></i>
-      </div>
       <ul class="list" style={{listStyleType : 'none'}}>
         
         {sellers.map(seller => 

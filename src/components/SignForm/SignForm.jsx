@@ -44,7 +44,8 @@ const SignForm = props => {
              <Signup toggleSignup={toggleSignup}
                      history={history}/>
             :
-            <Login toggleSignup={toggleSignup}/>
+            <Login toggleSignup={toggleSignup}
+                  history={history}/>
             }
          </div>
       </div>

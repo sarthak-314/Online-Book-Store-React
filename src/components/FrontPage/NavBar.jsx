@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+import { Avatar, Badge } from 'antd';
+import { ShoppingCartOutlined } from '@ant-design/icons';
 
 
 const NavBar = props => {
@@ -9,7 +11,7 @@ const NavBar = props => {
   const [searchTerms, setSearchTerms] = useState('')
   const pic = useSelector(state => state.pic)  
   const history = useHistory()
-
+  const [showCart, setShowCart] = useState(false)
 
 	return (
 <div class="header">
@@ -37,12 +39,26 @@ const NavBar = props => {
   <div class="header-title" 
   onClick={() => history.push('/')}>ONLINE <span>BOOK</span> STORE</div>
   <div class="profile">
+    {
+    showCart ? 
+    <div class="user-profile" style={{marginRight: '20px'}}>
+    <span className="avatar-item user-img">
+       <Badge count={0}>
+         <ShoppingCartOutlined style={{fontSize: '35px'}}/>
+       </Badge>
+     </span>
+    </div>
+     
+    : 
+    null    
+    }
    <Link to='/signup'>
    <div class="user-profile">
     <img src={pic} alt="" class="user-img"/>
    </div>
    </Link>
-   <div class="profile-menu" onClick={() => history.push('/upload')}>
+   <div class="profile-menu" onClick={() => history.push('/upload')}
+   style={{marginLeft: '20px'}}>
    + ADD A BOOK
    </div>
    

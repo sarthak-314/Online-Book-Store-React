@@ -8,8 +8,6 @@ const SendMessageArea = props => {
 			// value = {msgTxt}
 			// onKeyPress = {event => event.key === 'Enter' ? onSendMsg(event) : null } 	
 			/> 
-        <i class="fa fa-file-o"></i> &nbsp;&nbsp;&nbsp;
-        <i class="fa fa-file-image-o"></i>
         <button>Send</button>
       </div>
     )
