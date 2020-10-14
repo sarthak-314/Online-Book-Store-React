@@ -215,6 +215,13 @@ $gray: #92959E;
     font-size: 10px;
   }
   
+.sellerlist-boi {
+  transition: 0.1s;
+  &:hover{
+    cursor: pointer;
+    opacity: 0.9;
+  }
+}
 .online {
   color: $green;
 }

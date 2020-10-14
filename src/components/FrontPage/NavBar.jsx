@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { Avatar, Badge } from 'antd';
 import { ShoppingCartOutlined } from '@ant-design/icons';
+import { useEffect } from 'react';
 
 
 const NavBar = props => {
@@ -11,7 +12,13 @@ const NavBar = props => {
   const [searchTerms, setSearchTerms] = useState('')
   const pic = useSelector(state => state.pic)  
   const history = useHistory()
-  const [showCart, setShowCart] = useState(false)
+  const [cartNum, setCartNum] = useState(false)
+
+  const cart = useSelector(state => state.cart)
+  useEffect(() => {
+    console.log(cart.length)
+    setCartNum(cart.length)
+  }, [cart])
 
 	return (
 <div class="header">
@@ -32,7 +39,7 @@ const NavBar = props => {
    </div>
    </a>
    <div class="profile-menu" onClick={() => history.push('/blog')}>
-    Online Book Store's Blog
+    Blog
    </div>
     
   </div>
@@ -40,15 +47,14 @@ const NavBar = props => {
   onClick={() => history.push('/')}>ONLINE <span>BOOK</span> STORE</div>
   <div class="profile">
     {
-    showCart ? 
+    cartNum > 0 ? 
     <div class="user-profile" style={{marginRight: '20px'}}>
-    <span className="avatar-item user-img">
-       <Badge count={0}>
+    <span className="avatar-item user-img" onClick={() => history.push('/checkout')}>
+       <Badge count={cartNum}>
          <ShoppingCartOutlined style={{fontSize: '35px'}}/>
        </Badge>
      </span>
     </div>
-     
     : 
     null    
     }

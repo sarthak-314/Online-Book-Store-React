@@ -2,9 +2,8 @@ import React, { useState } from 'react'
 
 const MainInfo = (props) => {
 
-  const [firstName, setFirstName] = useState('')
-  const [lastName, setLastName] = useState('')
-  const [email, setEmail] = useState('')
+  const { setFirstName, setLastName, setEmail } = props 
+  
   const [address, setAddress] = useState('')
   const [address2, setAddress2] = useState('')
 

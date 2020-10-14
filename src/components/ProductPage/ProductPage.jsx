@@ -7,27 +7,35 @@ import YouMightLike from './YouMightLike'
 import BooksSimilar from './BooksSimilar'
 import BookInfo from './BookInfo'
 import BookImages from './BookImages'
+import { DJANGO_API_URL } from '../constants'
 
 const ProductPage = () => {
     const [image, setImage] = useState('')
     const { slug } = useParams()
+
+    const [title, setTitle] = useState('')
+    const [price, setPrice] = useState(0)
+    const [amazonPrice, setAmazonPrice] = useState(0)
+    const [condition, setCondition] = useState('')
+    const [category, setCategory] = useState('')
+
     console.log(slug)
     useEffect(() => {
-        axios.get(`http://127.0.0.1:8000/api/get-ad/${slug}/`).then(res => {
-            console.log(res.data)
+        axios.get(`${DJANGO_API_URL}/bookad/get-ad/${slug}/`).then(res => {
+          console.log(res.data)
+            setTitle(res.data.book_ad.book.title)
+            setPrice(res.data.book_ad.price)
+            setAmazonPrice(res.data.book_ad.amazon_price) 
+            setCondition(res.data.book_ad.condition)
+            setCategory(res.data.book_ad.category)       
             console.log('shit')
             const i = 'http://127.0.0.1:8000'+res.data.book_ad.book.image
             setImage(i)
             console.log(i)
         })
+        .catch(err => console.log(err))
     }, [])
     
-    const [bookShowList, setBookShowList] = useState([{title:"Stay And Fight",
-                                                     author:"Lucy Parker",
-                                                     votes:"1987",
-                                                     description:'Readers of all ages and walks of life have drawn inspiration and empowerment from Elizabeth Gilbert’s books for years.',
-                                                     image: "https://images-na.ssl-images-amazon.com/images/I/71PL7BiZ5NL.jpg"
-                                                     }])
 
     return (
 <main class="mt-5 pt-4">
@@ -39,9 +47,12 @@ const ProductPage = () => {
           image={image}
           />
           <BookInfo
-          category='Fiction'
-          condition='New'
+          category={category}
+          condition={condition}
           popular='Bestseller'
+          title={title}
+          price={price}
+          amazonPrice={amazonPrice}
           />
 
       </div>

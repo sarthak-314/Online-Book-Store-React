@@ -4,13 +4,11 @@ import SellerListDude from './SellerListDude'
 
 const SellerList = props => {
 
-  const [sellers, setSellers] = useState([{
-    name: 'Vincent Porter',
-    img: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg",
-    status: 'online',
-    statusMsg: 'online',
-  }
-  ])
+  const sellers = props.sellerList
+  const img = "https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg"
+  const status = 'offline'
+  const statusMsg =  'Offline'
+
 
 	return (
     <div class="people-list" id="people-list">
@@ -18,10 +16,11 @@ const SellerList = props => {
         
         {sellers.map(seller => 
           <SellerListDude
+          onClick={() => props.setChattingWith(seller)}
           name={seller.name}
-          img={seller.img}
-          status={seller.status}
-          statusMsg={seller.statusMsg}
+          img={img}
+          status={status}
+          statusMsg={statusMsg}
           />
         )}
         </ul>

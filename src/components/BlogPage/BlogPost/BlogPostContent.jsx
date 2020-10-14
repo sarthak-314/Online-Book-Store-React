@@ -3,9 +3,8 @@ import { Typography } from 'antd';
 import { DJANGO_API_URL, DJANGO_BASE_URL } from '../../constants'
 import axios from 'axios'
 import ListItem from './IntroPiece'
-import CommentWrite from './Comments/CommentWrite'
+import CommentWrite from './Comments/CommentWrite/CommentWrite'
 import CommentView from './Comments/CommentView'
-import { MessageFilled, MessageOutlined, LikeFilled, LikeOutlined, StarFilled, StarOutlined } from '@ant-design/icons'
 
 const BLOG_POST_BY_TITLE_URL = DJANGO_API_URL + '/blog/get-blog-by-title/'
 

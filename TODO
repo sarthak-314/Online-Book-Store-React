@@ -1,9 +1,7 @@
-1. Set up antd comments for the blog and shit 
+1. Set up fetching books 
+2. 
 
 
-1. Set up the product page
-2. Set up profile pic update on uploading pic
-3. Set up the explicit rating system
-4. Set up some social media shit, maybe??
-5. Make a fucking footer
-6. Add comment
+BACK END 
+1. Set up API with Goodreads, Stripe and Paypal. 
+2. Refine the Chat applicatoin

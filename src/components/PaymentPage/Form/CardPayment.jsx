@@ -1,31 +1,28 @@
 import React from 'react'
+import { Radio } from 'antd'
 
 const CardPayment = (props) => {
-  // TODO: Radio option on react
+  
+  const { payment, setPayment } = props
+
   return (
         <div>
         <div class="d-block my-3">
-        <div class="custom-control custom-radio">
-          <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required/>
-          <label class="custom-control-label" for="credit">Stripe</label>
-        </div>
-        <div class="custom-control custom-radio">
-          <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required/>
-          <label class="custom-control-label" for="debit">Credit Card</label>
-        </div>
-        <div class="custom-control custom-radio">
-          <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required/>
-          <label class="custom-control-label" for="paypal">Paypal</label>
-        </div>
+        <Radio.Group onChange={e => setPayment(e.target.value)} value={payment}>
+        <Radio value={1}>Stripe</Radio>
+        <Radio value={2}>Paypal</Radio>
+        <Radio value={3}>Credit Card</Radio>
+      </Radio.Group>
       </div>
       
-      
-      
+      {(payment == 3 || payment == 0) 
+      ? <>
       <div class="row">
         <div class="col-md-6 mb-3">
           <label for="cc-name">Name on card</label>
           <input type="text" class="form-control" id="cc-name" placeholder="" required/>
-          <small class="text-muted">Full name as displayed on card</small>
+          <small class="text-muted">Don't actually enter your credit card information. I don't know cybersecurity.</small>
+
           <div class="invalid-feedback">
             Name on card is required
           </div>
@@ -51,13 +48,16 @@ const CardPayment = (props) => {
           <input type="text" class="form-control" id="cc-cvv" placeholder="" required/>
           <div class="invalid-feedback">
             Security code required
+
           </div>
         </div>
+  
       </div>
-      
-      
+    </>      
+      :null}
       
       </div>
+
     )
 }
 

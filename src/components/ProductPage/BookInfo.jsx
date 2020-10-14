@@ -1,9 +1,12 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+import * as actions from '../../store/actions/auth'
 
 const BookInfo = (props) => {
-    const { category, condition, popular } = props
+    const { category, condition, popular, title, price } = props
     const history = useHistory()
+    const dispatch = useDispatch()
     return (
         <div class="col-md-6 mb-4">
 
@@ -25,7 +28,7 @@ const BookInfo = (props) => {
               <span class="mr-1">
                 <del>Rs.200    </del>
               </span>
-              <span>    Rs.100</span>
+    <span>    Rs.{price}</span>
             </p>
 
             <p class="lead font-weight-bold">Description</p>
@@ -34,8 +37,17 @@ const BookInfo = (props) => {
 
             <form class="d-flex justify-content-left">
               <button class="btn btn-primary btn-md my-0 p" type="submit"
+              style={{marginRight: '15px'}}
               onClick = {() => history.push('/checkout')}> Buy Book
-                <i class="fas fa-shopping-cart ml-1"></i>
+              </button>
+
+              <button class="btn btn-primary btn-md my-0 p" type="submit"
+              style={{marginLeft: '15px'}}
+              onClick = {() => {
+                history.push('/checkout')
+                dispatch(actions.addToCart(title, price, category, condition))
+                }}> 
+              Add to Cart
               </button>
 
             </form>

@@ -1,33 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { Comment, Avatar, Form, Button, List, Input } from 'antd'
 import { useSelector } from 'react-redux'
 import moment from 'moment'
-import { DJANGO_API_URL } from '../../../constants'
+import { DJANGO_API_URL } from '../../../../constants'
 import axios from 'axios'
-
-
-const { TextArea } = Input
-
-const CommentList = ({ comments }) => (
-  <List
-    dataSource={comments}
-    itemLayout="horizontal"
-    renderItem={props => <Comment {...props} />}
-  />
-)
-
-const Editor = ({ onChange, onSubmit, submitting, value }) => (
-  <>
-    <Form.Item>
-      <TextArea rows={4} onChange={onChange} value={value} />
-    </Form.Item>
-    <Form.Item>
-      <Button htmlType="submit" loading={submitting} onClick={onSubmit} type="primary">
-        Add Comment
-      </Button>
-    </Form.Item>
-  </>
-)
+import CommentWriteStyle from './CommentWriteStyle'
 
 
 const CommentWrite = props => {
@@ -52,6 +28,7 @@ const CommentWrite = props => {
             }]
             setComments(newComments)
         }, 650)
+        
         const POST_COMMENT_URL = DJANGO_API_URL + '/blog/post-comment/'
         const data = {
         'title': props.title, 
@@ -68,27 +45,14 @@ const CommentWrite = props => {
         setValue(e.target.value)
       }
     
-    return (
-        <>
-        {comments.length > 0 && <CommentList comments={comments} />}
-        <Comment
-          avatar={
-            <Avatar
-              src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-              alt="Han Solo"
+    return <CommentWriteStyle
+            comments={comments}
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+            submitting={submitting}
+            value={value}
             />
-          }
-          content={
-            <Editor
-              onChange={handleChange}
-              onSubmit={handleSubmit}
-              submitting={submitting}
-              value={value}
-            />
-          }
-        />
-      </>
-    )
+
 }
 
 export default CommentWrite

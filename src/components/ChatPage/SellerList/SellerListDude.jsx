@@ -5,7 +5,7 @@ const SellerListDude = props => {
   const { name, img, status, statusMsg } = props
 
   return (
-    <li class="clearfix">
+    <li class="clearfix sellerlist-boi">
           <img src={img} alt="avatar" />
           <div class="about">
             <div class="name">{name}</div>

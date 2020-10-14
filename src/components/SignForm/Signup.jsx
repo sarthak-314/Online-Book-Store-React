@@ -1,8 +1,10 @@
 import React, { useState, useCallback } from 'react'
+import axios from 'axios'
 import { useDispatch } from 'react-redux'
 import * as actions from '../../store/actions/auth'
 import { useDropzone } from 'react-dropzone'
 import { Spin, Alert } from 'antd'
+import { DJANGO_API_URL, NODEJS_URL } from '../constants'
 
 const SignUp = props => {
    const { toggleSignup, history } = props
@@ -28,8 +30,11 @@ const SignUp = props => {
 
       const onDrop = useCallback(acceptedFiles => {
          const profilePic = new FormData()
-         profilePic.append('avatar', acceptedFiles[0])
-
+         profilePic.append('file', acceptedFiles[0])
+         const config = {
+            header: { 'content-type': 'multipart/form-data' }
+         }
+         dispatch(actions.setAvatar(profilePic))
          setAvatar(profilePic)
       }, [])
 
@@ -44,7 +49,7 @@ const SignUp = props => {
     return ( 
        loading 
        ? 
-      {Spinner}
+      Spinner
        :
     <div class='signup form-peice'>
     <form class="signup-form" action="#">
@@ -52,7 +57,7 @@ const SignUp = props => {
           <input {...getInputProps()} />
           {
          <div class="CTA">
-            <input id="submit" value="Upload Profile Picture" style={{textAlign : 'center', marginTop: '-30px'}} class='upload-ppic'
+            <input id="submit" value={avatar ? "Change Avatar" : "Upload Profile Picture"} style={{textAlign : 'center', marginTop: '-30px'}} class='upload-ppic'
             onClick={e => e.preventDefault()}/>
          </div>
           }
