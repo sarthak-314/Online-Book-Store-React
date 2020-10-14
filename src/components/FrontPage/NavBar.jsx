@@ -39,7 +39,7 @@ const NavBar = props => {
    </div>
    </a>
    <div class="profile-menu" onClick={() => history.push('/blog')}>
-    Blog
+    Book Review Blog
    </div>
     
   </div>

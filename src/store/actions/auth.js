@@ -141,7 +141,6 @@ export const getFriends = () => {
                 const userProfileSerialized = {name, avatar}
                 userProfilesSerialized.push(userProfileSerialized)
             }
-            console.log(userProfilesSerialized)
             dispatch(setFriends(userProfilesSerialized))
         })
         .catch(err => {
